@@ -12,7 +12,8 @@
   <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
   
   <script type="text/javascript" src="javascript/jquery-min-1.8.2.js"></script>
-  <script type="text/javascript" src="javascript/masked-input.js"></script>
+  <script type="text/javascript" src="javascript/inputmask/jquery.inputmask.js"></script>
+  <script type="text/javascript" src="javascript/inputmask/jquery.inputmask.extensions.js"></script>
 
 </head>
 
@@ -47,13 +48,25 @@
   <script type="text/javascript">
     $(document).ready(function() {
         var timer;
+        var $timer = $('#timer');
         
-        $('#timer').mask('99:99',
-            {
-                completed: function() {
-                    $('#timer').val('0000');
-                }
-            });
+        var format = function(value){
+            while(value.length < 2) {
+                value = '0' + value;
+            }
+            return value;
+        }
+            
+        var onMaskInComplete = function() {
+            var regex = /[_]/g;
+            var splitTime = $timer.val().split(':');
+            var minutes = splitTime[0].replace(regex, '');
+            var seconds = splitTime[1].replace(regex, '');
+                        
+            $timer.val(format(String(minutes)) + ':' + format(String(seconds)));
+        }
+        
+        $timer.inputmask({mask: '99:99', placeholder: '_', onincomplete: onMaskInComplete});
 
         $('input[type="text"]').each(function() {
             var $this = $(this);
@@ -88,16 +101,16 @@
             }(value);
             
             var format = function(value){
-              if (value.length === 2) {
+                while(value.length < 2) {
+                    value = '0' + value;
+                }
                 return value;
-              }
-              return '0' + value;
             }
 
             var convertFromTicks = function() {
                 var minutes = Math.floor(ticks / 60);
                 var seconds = ticks % 60;
-                return minutes + ':' + format(String(seconds));
+                return format(String(minutes)) + ':' + format(String(seconds));
             }
             
             var timer = function() {
