@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+  <meta name="description" content="Personal blog site for chvck covering a range of topics but mostly bikes. chvck likes bikes." />
+  <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  
+  <title>Scoreboard</title>
+  <link href="reset.css" rel="stylesheet" type="text/css" media="screen" />
+  <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+  
+  <script type="text/javascript" src="javascript/jquery-min-1.8.2.js"></script>
+  <script type="text/javascript" src="javascript/masked-input.js"></script>
+
+</head>
+
+<body>
+  <div class="container">
+    <div id="top">
+      <input type="text" value="00:00" id="timer" />
+      <div id="controls">
+        <span>Start</span>
+        <span>Reset</span>
+      </div>
+    </div>
+    <div id="col1">
+      <input type="text" value="Team1" class="teamName" />
+      <input type="text" value="0" class="score" />
+        <div class="scoreButtons">
+          <input type="button" value="-" class="scoreButton" />
+          <input type="button" value="+" class="scoreButton" />
+        </div>
+    </div>
+    <div id="col2">
+        <input type="text" value="Team2" class="teamName" />
+        <input type="text" value="0" class="score" />
+        <div class="scoreButtons">
+          <input type="button" value="-" class="scoreButton" />
+          <input type="button" value="+" class="scoreButton" />
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $('#timer').mask('99:99',
+            {
+                completed: function() {
+                    $('#timer').val('0000');
+                }
+            });
+
+        $('input[type="text"]').each(function() {
+            var $this = $(this);
+            var len = $this.val().length;
+            var width = $this.width() / len;
+            var height = $this.height();
+            $this.css('font-size', Math.min(width, height));
+        });
+    });
+  </script>
+  
+</body>
+</html>

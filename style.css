@@ -1,0 +1,103 @@
+* { margin: 0; padding: 0; }
+
+/* *** General Styles *** */
+html {
+    height: 95%;
+    background-color: black;
+}
+
+body  {
+    background-color: grey;
+    text-align: center;
+    height: 100%;
+    overflow: hidden;
+}
+
+img {
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+}
+
+/* *** Layout *** */
+
+.container { 
+    background-color: black;
+    height:100%;
+}
+
+#top {
+    width: 100%;
+    float: left;
+    height: 50%;
+}
+
+#col1 {
+    width: 50%;
+    float: left;
+    height: 50%;
+}
+
+#col2 {
+    width: 50%;
+    float: right;
+    height: 50%;
+}
+
+#timer,
+.teamName,
+.score {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    border: none;
+    text-align: center;
+    width: 100%;
+}
+
+#timer {
+    height: 80%;
+    color: yellow;
+}
+
+#controls {
+    height: 20%;
+    color: white;
+}
+
+.teamName {
+    min-height: 15%;
+}
+
+.score {
+    min-height: 65%;
+    color: yellow;
+}
+
+.scoreButtons {
+    height: 20%;
+}
+
+.scoreButton {
+    height: 50%;
+    width: 25%;
+    background-color: black;
+    border: 1px solid white;
+    color: white;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+
+.scoreButton:hover {
+    border: 1px solid yellow;
+}
+
+
+.scoreButton:active {
+    border: 1px solid yellow;
+    background-color: yellow;
+    color: black;
+}
