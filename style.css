@@ -32,6 +32,12 @@ img {
     height: 50%;
 }
 
+#top img {
+    height: 100%;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
 #col1 {
     width: 50%;
     float: left;

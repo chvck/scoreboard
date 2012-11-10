@@ -11,6 +11,7 @@
   <link href="reset.css" rel="stylesheet" type="text/css" media="screen" />
   <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
   
+  <script type="text/javascript" src="javascript/timer.js"></script>
   <script type="text/javascript" src="javascript/jquery-min-1.8.2.js"></script>
   <script type="text/javascript" src="javascript/inputmask/jquery.inputmask.js"></script>
   <script type="text/javascript" src="javascript/inputmask/jquery.inputmask.extensions.js"></script>
@@ -22,24 +23,25 @@
     <div id="top">
       <input type="text" value="15:00" id="timer" />
       <div id="controls">
-        <span id="start">Start</span>
-        <span>Reset</span>
+        <img id="start" src="images/control_play_blue.png" />
+        <img id="pause" src="images/control_pause_blue.png" style="display: none" />
+        <img id="restart" src="images/arrow_refresh.png" />
       </div>
     </div>
     <div id="col1">
       <input type="text" value="Team1" class="teamName" />
-      <input type="text" value="0" class="score" />
+      <input type="text" value="0" class="score" id="score1" />
         <div class="scoreButtons">
-          <input type="button" value="-" class="scoreButton" />
-          <input type="button" value="+" class="scoreButton" />
+          <input type="button" value="-" class="scoreButton" id="decreaseTeam1" />
+          <input type="button" value="+" class="scoreButton" id="increaseTeam1" />
         </div>
     </div>
     <div id="col2">
         <input type="text" value="Team2" class="teamName" />
-        <input type="text" value="0" class="score" />
+        <input type="text" value="0" class="score" id="score2" />
         <div class="scoreButtons">
-          <input type="button" value="-" class="scoreButton" />
-          <input type="button" value="+" class="scoreButton" />
+          <input type="button" value="-" class="scoreButton" id="decreaseTeam2" />
+          <input type="button" value="+" class="scoreButton" id="increaseTeam2" />
         </div>
       </div>
     </div>
@@ -47,8 +49,13 @@
   
   <script type="text/javascript">
     $(document).ready(function() {
-        var timer;
+        var timer = new Timer();
         var $timer = $('#timer');
+        var $start = $('#start');
+        var $pause = $('#pause');
+        var $restart = $('#restart');
+        var $score1 = $('#score1');
+        var $score2 = $('#score2');
         
         var format = function(value){
             while(value.length < 2) {
@@ -77,64 +84,61 @@
         });
         
         var updateTimer = function(time) {
-            $('#timer').val(time);
+            $timer.val(time);
         }
         
-        $('#start').click(function() {
-            timer = new Timer($('#timer').val());
+        var toggleControls = function() {
+            $start.toggle();
+            $pause.toggle();
+        }
+        
+        $start.click(function() {
+            toggleControls();
+            timer.setTime($timer.val());
             timer.subscribeToEmitter(updateTimer);
             timer.start();
         })
-
-        var Timer = function(value) {
-            var context = {};
-            var ticks = 0;
-            var counter;
-            var emitHandlers = [];
-
-            var convertToTicks = function(time) {
-                var splitTime = time.split(':');
-                var minutes = splitTime[0];
-                var seconds = splitTime[1];
-                
-                ticks = Number(minutes * 60) + Number(seconds);
-            }(value);
-            
-            var format = function(value){
-                while(value.length < 2) {
-                    value = '0' + value;
-                }
-                return value;
+        
+        $pause.click(function() {
+            toggleControls();
+            timer.pause();
+        });
+        
+        $timer.change(function() {
+            timer.setTime($timer.val());
+        });
+        
+        $restart.click(function() {
+            $start.show();
+            $pause.hide();
+            timer.reset();
+            var startTime = timer.getStartTime();
+            if (startTime) {
+                $timer.val();
             }
-
-            var convertFromTicks = function() {
-                var minutes = Math.floor(ticks / 60);
-                var seconds = ticks % 60;
-                return format(String(minutes)) + ':' + format(String(seconds));
-            }
-            
-            var timer = function() {
-                ticks = ticks - 1;
-                if (ticks === 0) {
-                    clearInterval(counter);
-                }
-                context.emitTime(convertFromTicks());
-            }
-
-            context.start = function() {
-                counter = setInterval(timer, 1000);
-            }
-
-            context.emitTime = function(time) {
-                $.each(emitHandlers, function(idx, handler) { handler(time) });
-            }
-            
-            context.subscribeToEmitter = function(fn) {
-                emitHandlers.push(fn);
-            }
-            
-            return context;
+            $score1.val(0);
+            $score2.val(0);
+        });
+        
+        var updateScore = function ($selector, value) {
+            $selector.val(Number($selector.val()) + value);
         }
+        
+        $('#decreaseTeam1').click(function() {
+            updateScore($score1, -1);
+        });
+        
+        $('#increaseTeam1').click(function() {
+            updateScore($score1, 1);
+        });
+        
+        $('#decreaseTeam2').click(function() {
+            updateScore($score2, -1);
+        });
+        
+        $('#increaseTeam2').click(function() {
+            updateScore($score2, 1);
+        });
     });
   </script>
   
