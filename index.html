@@ -19,9 +19,9 @@
 <body>
   <div class="container">
     <div id="top">
-      <input type="text" value="00:00" id="timer" />
+      <input type="text" value="15:00" id="timer" />
       <div id="controls">
-        <span>Start</span>
+        <span id="start">Start</span>
         <span>Reset</span>
       </div>
     </div>
@@ -46,6 +46,8 @@
   
   <script type="text/javascript">
     $(document).ready(function() {
+        var timer;
+        
         $('#timer').mask('99:99',
             {
                 completed: function() {
@@ -60,6 +62,66 @@
             var height = $this.height();
             $this.css('font-size', Math.min(width, height));
         });
+        
+        var updateTimer = function(time) {
+            $('#timer').val(time);
+        }
+        
+        $('#start').click(function() {
+            timer = new Timer($('#timer').val());
+            timer.subscribeToEmitter(updateTimer);
+            timer.start();
+        })
+
+        var Timer = function(value) {
+            var context = {};
+            var ticks = 0;
+            var counter;
+            var emitHandlers = [];
+
+            var convertToTicks = function(time) {
+                var splitTime = time.split(':');
+                var minutes = splitTime[0];
+                var seconds = splitTime[1];
+                
+                ticks = Number(minutes * 60) + Number(seconds);
+            }(value);
+            
+            var format = function(value){
+              if (value.length === 2) {
+                return value;
+              }
+              return '0' + value;
+            }
+
+            var convertFromTicks = function() {
+                var minutes = Math.floor(ticks / 60);
+                var seconds = ticks % 60;
+                return minutes + ':' + format(String(seconds));
+            }
+            
+            var timer = function() {
+                ticks = ticks - 1;
+                if (ticks === 0) {
+                    clearInterval(counter);
+                }
+                context.emitTime(convertFromTicks());
+            }
+
+            context.start = function() {
+                counter = setInterval(timer, 1000);
+            }
+
+            context.emitTime = function(time) {
+                $.each(emitHandlers, function(idx, handler) { handler(time) });
+            }
+            
+            context.subscribeToEmitter = function(fn) {
+                emitHandlers.push(fn);
+            }
+            
+            return context;
+        }
     });
   </script>
   
