@@ -1,0 +1,29 @@
+<?xml version="1.0"?><svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <title>refresh</title>
+ <defs>
+  <linearGradient y2="1.303892" x2="1.400072" y1="-0.376559" x1="-0.328437" id="linearGradient16937" xlink:href="#linearGradient8026"/>
+  <linearGradient id="linearGradient8026">
+   <stop stop-color="#ffffff" id="stop8028" offset="0"/>
+   <stop stop-color="#ffffff" stop-opacity="0" id="stop8030" offset="1"/>
+  </linearGradient>
+  <linearGradient y2="1.33425" x2="1.092135" y1="-0.240422" x1="-0.073227" id="linearGradient16935" xlink:href="#linearGradient8026"/>
+  <linearGradient y2="-0.146835" x2="0.140859" y1="1.367514" x1="1.144109" id="linearGradient16933" xlink:href="#linearGradient15728"/>
+  <linearGradient id="linearGradient15728">
+   <stop stop-color="#000097" offset="0" id="stop15730"/>
+   <stop stop-color="#6efff9" offset="1" id="stop15732"/>
+  </linearGradient>
+  <linearGradient y2="1.146834" x2="0.859143" y1="-0.343962" x1="-0.045961" id="linearGradient16931" xlink:href="#linearGradient15728"/>
+ </defs>
+ <metadata id="metadata3830">image/svg+xml</metadata>
+ <g>
+  <title>Layer 1</title>
+  <g id="layer1">
+   <g transform="matrix(0.400596 0 0 0.534119 -288.824 -109.659)" id="g16907">
+    <path fill="url(#linearGradient16931)" fill-rule="evenodd" stroke="#000082" stroke-miterlimit="4" d="m741.526489,217.322952l9.027161,11.444305l9.106873,-11.69696l-5.342346,0.006226c0,0 0.678589,-4.86203 -2.02124,-7.747513c-2.699707,-2.885468 -8.973755,-2.868591 -8.973755,-2.868591c0,0 2.788086,1.595032 3.814636,4.52124c1.026672,2.926193 0.487549,6.257797 0.487549,6.257797l-6.098877,0.083496z" id="path15339"/>
+    <path fill="url(#linearGradient16933)" fill-rule="evenodd" stroke="#000082" stroke-miterlimit="4" d="m740.560669,223.339798l-9.027283,-11.444366l-9.106812,11.696991l5.342346,-0.006226c0,0 -0.678589,4.86203 2.021179,7.747528c2.699829,2.885468 8.973755,2.868622 8.973755,2.868622c0,0 -2.787964,-1.595093 -3.814575,-4.521301c-1.026611,-2.926147 -0.487549,-6.257782 -0.487549,-6.257782l6.098938,-0.083466z" id="path15341"/>
+    <path fill="url(#linearGradient16935)" fill-rule="evenodd" stroke-miterlimit="4" d="m736.411926,218.803635l-4.505127,-5.467896l-7.402832,9.362396l4.06897,-0.016541c5.627319,-0.396759 4.091797,-3.734894 7.838989,-3.87796z" id="path15742"/>
+    <path fill="url(#linearGradient16937)" fill-rule="evenodd" stroke-miterlimit="4" d="m743.476624,218.324051l3.631592,4.495422c3.861328,-0.87149 2.874512,-4.24884 6.309998,-4.928375c0,0 0.968018,-4.173462 -0.971436,-7.45256c-1.872864,-3.166595 -7.094421,-3.020874 -7.094421,-3.020874c0,0 2.027954,1.138733 2.954163,4.008514c0.926086,2.869766 0.10791,6.813217 0.10791,6.813217l-4.937805,0.084656z" id="path15740"/>
+   </g>
+  </g>
+ </g>
+</svg>

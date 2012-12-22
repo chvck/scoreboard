@@ -62,7 +62,7 @@ var Timer = function() {
     context.reset = function() {
         clearInterval(counter);
         if (start) {
-            convertToTicks(start);
+            context.emitTime(start);
         }
     }
     
