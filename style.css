@@ -2,7 +2,7 @@
 
 /* *** General Styles *** */
 html {
-    height: 95%;
+    height: 100%;
     background-color: black;
 }
 
@@ -35,7 +35,7 @@ img {
 #top img {
     height: 100%;
     cursor: pointer;
-    margin-left: 5px;
+    margin-left: 1em;
 }
 
 #col1 {
@@ -72,11 +72,11 @@ img {
 }
 
 .teamName {
-    min-height: 15%;
+    height: 15%;
 }
 
 .score {
-    min-height: 65%;
+    height: 65%;
     color: yellow;
 }
 
@@ -91,7 +91,7 @@ img {
     border: 1px solid white;
     color: white;
     cursor: pointer;
-    margin: 5px;
+    margin: 1em;
     border-radius: 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
