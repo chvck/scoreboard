@@ -54,8 +54,8 @@ var Timer = function() {
     }
     
     context.setTime = function(time) {
-        start = time;
         ticks = convertToTicks(time);
+        start = convertFromTicks();
     }
     
     context.reset = function() {
