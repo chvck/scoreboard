@@ -9,8 +9,7 @@ var Timer = function() {
         var splitTime = time.split(':');
         var minutes = splitTime[0];
         var seconds = splitTime[1];
-        
-        ticks = Number(minutes * 60) + Number(seconds);
+        return Number(minutes * 60) + Number(seconds);
     };
     
     var format = function(value){
@@ -56,7 +55,7 @@ var Timer = function() {
     
     context.setTime = function(time) {
         start = time;
-        convertToTicks(time);
+        ticks = convertToTicks(time);
     }
     
     context.reset = function() {

@@ -56,6 +56,12 @@
         var $restart = $('#restart');
         var $score1 = $('#score1');
         var $score2 = $('#score2');
+        $('body').append('<style></style>');
+
+        
+        $(window).resize(function() {
+            resizeFonts();
+        });
         
         var format = function(value){
             while(value.length < 2) {
@@ -75,13 +81,17 @@
         
         $timer.inputmask({mask: '99:99', placeholder: '_', onincomplete: onMaskInComplete});
 
-        $('input[type="text"]').each(function() {
-            var $this = $(this);
-            var len = $this.val().length;
-            var width = $this.width() / len;
-            var height = $this.height();
-            $this.css('font-size', Math.min(width, height));
-        });
+        var resizeFonts = function() {
+            $('input[type="text"]').each(function() {
+                var $this = $(this);
+                var len = $this.val().length;
+                var width = $this.width() / len;
+                var height = $this.height();
+                $this.css('font-size', Math.min(width, height));
+            });
+        }
+
+        resizeFonts();
         
         var updateTimer = function(time) {
             $timer.val(time);
